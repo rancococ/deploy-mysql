@@ -1,0 +1,36 @@
+##########################################################################
+# 部署配置文件(base)
+# 本配置文件(xx.yml)中的变量(${xxx})是从同级目录下的.env文件中读取的
+##########################################################################
+# compose支持的版本2
+version: "2"
+services:
+  # mysql
+  mysql:
+    image: ${IMAGE_MYSQL}
+    container_name: "mysql.${PRODUCT_NAME}.${COMPANY_NAME}"
+    hostname: "mysql.${PRODUCT_NAME}.${COMPANY_NAME}"
+    restart: "always"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./volume/mysql/conf:/etc/mysql/conf.d:ro
+      - ./volume/mysql/data:/var/lib/mysql:rw
+    network_mode: "host"
+    # cap_add:
+    #   - NET_ADMIN
+    #   - SYS_ADMIN
+  # adminer
+  adminer:
+    image: ${IMAGE_ADMINER}
+    container_name: "adminer.${PRODUCT_NAME}.${COMPANY_NAME}"
+    hostname: "adminer.${PRODUCT_NAME}.${COMPANY_NAME}"
+    restart: "always"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "33066:8080"
