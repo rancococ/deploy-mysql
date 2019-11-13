@@ -21,6 +21,7 @@ services:
       - ./volume/mysql/conf:/etc/mysql/conf.d:ro
       - ./volume/mysql/data:/var/lib/mysql:rw
       - ./volume/mysql/logs:/var/log/mysql:rw
+      - ./volume/mysql/temp:/back:rw
     network_mode: "host"
     extra_hosts:
       - "mysql.${PRODUCT_NAME}.${COMPANY_NAME}:${HOST_IP}"
