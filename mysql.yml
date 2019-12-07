@@ -7,7 +7,7 @@ version: "2"
 services:
   # mysql
   mysql:
-    image: ${IMAGE_MYSQL}
+    image: ${IMAGE_REPO}/${IMAGE_MYSQL}
     container_name: "mysql.${PRODUCT_NAME}.${COMPANY_NAME}"
     hostname: "mysql.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
@@ -30,7 +30,7 @@ services:
     #   - SYS_ADMIN
   # adminer
   adminer:
-    image: ${IMAGE_ADMINER}
+    image: ${IMAGE_REPO}/${IMAGE_ADMINER}
     container_name: "adminer.${PRODUCT_NAME}.${COMPANY_NAME}"
     hostname: "adminer.${PRODUCT_NAME}.${COMPANY_NAME}"
     restart: "always"
